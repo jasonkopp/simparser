@@ -83,30 +83,34 @@ def makeCSV(average_data, newfilename):
 
 
 def plot_QPs_Bits(AV1, HEVC, title):
-    av1_qps = []
-    av1_bits = []
-    hevc_qps = []
-    hevc_bits = []
+    av1_qps         = []
+    av1_avg_y       = []
+    av1_avg_bits    = []
+    hevc_qps        = []
+    hevc_avg_y      = []
+    hevc_avg_bits   = []
     for data in AV1:
         av1_qps.append(int(data[0]))
-        av1_bits.append(data[1][1][4])
+        av1_avg_y.append(data[1][1][1])
+        av1_avg_bits.append(data[1][1][4])
     for data in HEVC:
         hevc_qps.append(int(data[0]))
-        hevc_bits.append(data[1][1][4])
+        hevc_avg_y.append(data[1][1][1])
+        hevc_avg_bits.append(data[1][1][4])
 
-    plt.plot(av1_bits, av1_qps, label='AV1')
-    plt.plot(hevc_bits, hevc_qps, label='HEVC')
+    plt.plot(av1_avg_bits, av1_avg_y, color='r', marker='.', linewidth='0.5', label='AV1')
+    plt.plot(hevc_avg_bits, hevc_avg_y, color='b', marker='.', linewidth='0.5', label='HEVC')
+    plt.xlabel('Average Bits')
+    plt.ylabel('Average Y PSNR (dB)')
 
-    plt.xlabel('Bits')
-    plt.ylabel('QPs')
+    # plt.ylim([0,120])
 
     plt.title(title[:-2])
-    plt.grid(True)
     plt.legend()
+    plt.grid(True)
+    plt.tight_layout()
     plt.savefig(title[:-2]+'.png')
-
-
-
+    # plt.show()
 
 warning = 'You need to type "python simparser.py [path/to/AV1/directory] [path/to/HEVC/directory]"'
 
@@ -130,7 +134,6 @@ elif len(sys.argv) == 3:
     makeCSV(average_dataAV1, title+"_av1-data.csv")
     makeCSV(average_dataHEVC, title+"_hevc-data.csv")
 
-    plot_QPs_Bits(average_dataAV1, average_dataHEVC, title)
     plot_QPs_Bits(average_dataAV1, average_dataHEVC, title)
 
 elif len(sys.argv) > 3:
