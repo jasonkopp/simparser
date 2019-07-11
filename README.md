@@ -7,7 +7,7 @@ This script takes two directories that contain your output simulation folders, f
 ## To run the script:
 - Type: `python [path/to/simparser.py] [path/to/AV1/directory] [path/to/HEVC/directory]`
 - The directories should hold all of your output simulation folders from AV1 and HEVC (e.g. `MarketPlace_1920x1080_60fps_10bit_420_0/`, `MarketPlace_1920x1080_60fps_10bit_420_1/`, etc.)
-  - Those folders should contain three files each: `console0`, `console1`, `console2`, and a `.ivf` file.
+  - Those folders should contain four files each: `console0`, `console1`, `console2`, and a `.ivf` file.
 
 ## Output:
 The script will output three files. One CSV file for the AV1 data, one CSV file for the HEVC data, and one PNG graph of the comparison.
