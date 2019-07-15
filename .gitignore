@@ -1,4 +1,5 @@
 .DS_Store
-_results/
-_previous/
-_backup/
+Encoders/
+Other/
+Results_CSV/
+Results_Raw
